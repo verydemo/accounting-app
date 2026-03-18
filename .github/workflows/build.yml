@@ -1,17 +1,59 @@
-name: Build
+name: React Native CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, develop]
   pull_request:
     branches: [main, master]
 
 jobs:
-  build:
+  # Job 1: 构建 Android APK
+  build_android:
+    name: Build Android Release
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Generate native Android project
+        run: npx expo prebuild --platform android
+
+      - name: Build Android Debug APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-app
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 7
+
+  # Job 2: 构建 iOS IPA
+  build_ios:
+    name: Build iOS Release
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -23,8 +65,32 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: TypeScript check
-        run: npx tsc --noEmit
+      - name: Generate native iOS project
+        run: npx expo prebuild --platform ios
 
-      - name: Web export build
-        run: npx expo export --platform web --output-dir dist
+      - name: Install CocoaPods dependencies
+        run: |
+          cd ios
+          pod install --repo-update
+
+      - name: Build iOS App (Debug, no signing)
+        run: |
+          cd ios
+          xcodebuild -workspace accountingapp.xcworkspace -scheme accountingapp -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 15' -archivePath build/accountingapp.xcarchive archive CODE_SIGNING_ALLOWED=NO
+
+      - name: Create iOS IPA (simulator build)
+        run: |
+          cd ios
+          mkdir -p build/ipa
+          cp -r build/accountingapp.xcarchive/Products/Applications/accountingapp.app build/ipa/
+          cd build/ipa
+          mkdir Payload
+          mv accountingapp.app Payload/
+          zip -r ../accountingapp.ipa Payload
+
+      - name: Upload iOS IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-app
+          path: ios/build/accountingapp.ipa
+          retention-days: 7

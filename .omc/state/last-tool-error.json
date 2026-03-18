@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"git push -u origin main 2>&1\",\"description\":\"Push to GitHub\",\"timeout\":120000}",
+  "error": "Exit code 128\nfatal: unable to access 'https://github.com/verydemo/accounting-app.git/': Recv failure: Operation timed out",
+  "timestamp": "2026-03-18T10:32:29.081Z",
+  "retry_count": 1
+}
