@@ -1,0 +1,164 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1773829268507,
+  "projectRoot": "/Users/zhangjl/code/proj/work/app",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "react",
+        "version": "19.2.0",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.2.0",
+        "category": "frontend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run start",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web",
+      "build:android": "eas build --platform android",
+      "build:ios": "eas build --platform ios",
+      "build:dev": "eas build --profile development --platform all",
+      "build:preview": "eas build --profile preview --platform all",
+      "build:preview:android": "eas build --profile preview --platform android",
+      "build:preview:ios": "eas build --profile preview --platform ios",
+      "build:prod": "eas build --profile production --platform all",
+      "submit": "eas submit --platform all",
+      "update": "eas update --auto"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "app",
+      "assets",
+      "components"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "app": {
+      "path": "app",
+      "purpose": "Application code",
+      "fileCount": 1,
+      "lastAccessed": 1773829268492,
+      "keyFiles": [
+        "_layout.tsx"
+      ]
+    },
+    "assets": {
+      "path": "assets",
+      "purpose": "Static assets",
+      "fileCount": 6,
+      "lastAccessed": 1773829268493,
+      "keyFiles": [
+        "android-icon-background.png",
+        "android-icon-foreground.png",
+        "android-icon-monochrome.png",
+        "favicon.png",
+        "icon.png"
+      ]
+    },
+    "components": {
+      "path": "components",
+      "purpose": "UI components",
+      "fileCount": 4,
+      "lastAccessed": 1773829268496,
+      "keyFiles": [
+        "category-picker.tsx",
+        "screen-container.tsx",
+        "transaction-item.tsx",
+        "transaction-list.tsx"
+      ]
+    },
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 0,
+      "lastAccessed": 1773829268496,
+      "keyFiles": []
+    },
+    "hooks": {
+      "path": "hooks",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1773829268496,
+      "keyFiles": [
+        "use-colors.ts",
+        "use-transactions.ts"
+      ]
+    },
+    "types": {
+      "path": "types",
+      "purpose": "Type definitions",
+      "fileCount": 1,
+      "lastAccessed": 1773829268496,
+      "keyFiles": [
+        "transaction.ts"
+      ]
+    },
+    "utils": {
+      "path": "utils",
+      "purpose": "Utility functions",
+      "fileCount": 2,
+      "lastAccessed": 1773829268497,
+      "keyFiles": [
+        "format.ts",
+        "storage.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "babel.config.js",
+      "accessCount": 2,
+      "lastAccessed": 1773829308168,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 1,
+      "lastAccessed": 1773829295351,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
